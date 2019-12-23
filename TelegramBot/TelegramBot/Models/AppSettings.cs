@@ -7,9 +7,9 @@ namespace TelegramBot.Models
 {
     public static class AppSettings
     {
-        public static string CURRENCYURL = "https://finance.tut.by/kurs/";
-        public static string TABLECLASSNAME = "tbl-lite rates-table";
+        public static string CURRENCYURL = "site with currency ";
+        public static string TABLECLASSNAME = "tabl-lig";
         public static string BOTKEY = "Api_key";
-        public static string URL = "https://telegrambotapp.azurewebsites.net:443/{0}";
+        public static string URL = "siteUrl";
     }
 }
