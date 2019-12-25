@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -11,7 +12,7 @@ namespace TelegramBot.Models.Commands
     {
         public override string Name => "/main";
 
-        public override async void Execute(Message message, TelegramBotClient botClient)
+        public override async Task Execute(Message message, TelegramBotClient botClient)
         {
             CurrencyExplorer explorer = new CurrencyExplorer();
             explorer.readCurrency();
