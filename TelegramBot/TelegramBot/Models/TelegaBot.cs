@@ -11,6 +11,7 @@ namespace TelegramBot.Models
             commandsList.Add(new MainCommand());
             commandsList.Add(new AllCommand());
             commandsList.Add(new CrackerCommand());
+            commandsList.Add(new StartCommand());
             return commandsList;
         }
 
