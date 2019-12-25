@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
+using Telegram.Bot;
 using Telegram.Bot.Types;
 using TelegramBot.Models;
 using TelegramBot.Models.Commands;
@@ -17,25 +13,25 @@ namespace TelegramBot.Controllers
         [Route(@"api/message/update")] //webhook uri part
         public async Task<OkResult> Update([FromBody]Update update)
         {
-            var commands = TelegaBot.Commands;
+            var commands = TelegaBot.GetCommands();
             var message = update.Message;
-            var client = await TelegaBot.Get();
+            var client = new TelegramBotClient(AppSettings.BOTKEY);
             bool isGoodCommand = false;
             foreach (var command in commands)
             {
                 if (command.Contains(message.Text))
                 {
                     isGoodCommand = true;
-                    command.Execute(message, client);
+                    await command.Execute(message, client);
                     break;
                 }
             }
 
             if (!isGoodCommand)
             {
-                new ErrorCommand().Execute(message, client);
+                ErrorCommand cmd = new ErrorCommand();
+                await cmd.Execute(message, client);
             }
-
             return Ok();
         }
     }
